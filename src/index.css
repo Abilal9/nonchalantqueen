@@ -1,0 +1,35 @@
+:root {
+  --bg: #fff5f8;
+  --text: #3d2a35;
+  --muted: #8a6b7a;
+  --accent: #d4739a;
+
+  --sans: 'Segoe UI', system-ui, sans-serif;
+  --display: Georgia, 'Times New Roman', serif;
+
+  font-family: var(--sans);
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--text);
+  background-color: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100svh;
+}
+
+#root {
+  min-height: 100svh;
+}
