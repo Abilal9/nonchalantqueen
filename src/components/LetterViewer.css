@@ -1,0 +1,237 @@
+.letter-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.letter-viewer__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(42, 53, 72, 0.4);
+  backdrop-filter: blur(8px);
+  animation: overlay-in 0.35s ease both;
+  pointer-events: none;
+}
+
+/* Single centered cluster — envelope and paper share the same origin */
+
+.letter-viewer__cluster {
+  position: relative;
+  z-index: 1;
+  width: min(88vw, 300px);
+  height: 190px;
+  cursor: default;
+  perspective: 1200px;
+  transition:
+    width 1.15s cubic-bezier(0.22, 1, 0.36, 1),
+    height 1.15s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.letter-viewer__cluster--expand,
+.letter-viewer__cluster--full {
+  width: min(92vw, 595px);
+  height: min(88vh, 842px, calc(92vw * 297 / 210));
+}
+
+/* Envelope */
+
+.letter-viewer__envelope {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: opacity 0.6s ease 0.15s;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.letter-viewer__cluster--expand .letter-viewer__envelope,
+.letter-viewer__cluster--full .letter-viewer__envelope {
+  opacity: 0;
+}
+
+.letter-viewer__envelope-back {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #d9ebfa 0%, #c5dff5 100%);
+  border: 2px solid #7eb8e8;
+  border-radius: 6px;
+}
+
+.letter-viewer__envelope-front {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 65%;
+  background: linear-gradient(180deg, #b8d4f8 0%, #a8c8f0 100%);
+  border: 2px solid #7eb8e8;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  clip-path: polygon(0 0, 50% 45%, 100% 0, 100% 100%, 0 100%);
+  z-index: 2;
+  transition: opacity 0.4s ease;
+}
+
+.letter-viewer__envelope-front--slide,
+.letter-viewer__envelope-front--expand,
+.letter-viewer__envelope-front--full {
+  opacity: 0;
+}
+
+.letter-viewer__flap {
+  position: absolute;
+  top: 0;
+  left: -2px;
+  right: -2px;
+  height: 105px;
+  background: linear-gradient(180deg, #a8c8f0 0%, #7eb8e8 100%);
+  border: 2px solid #5b9fd4;
+  border-bottom: none;
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  transform-origin: top center;
+  transform: rotateX(0deg);
+  z-index: 4;
+  transition: transform 0.7s cubic-bezier(0.33, 1, 0.38, 1);
+  backface-visibility: hidden;
+}
+
+.letter-viewer__flap--flap,
+.letter-viewer__flap--slide,
+.letter-viewer__flap--expand,
+.letter-viewer__flap--full {
+  transform: rotateX(180deg);
+}
+
+/* Paper — grows from inside the envelope, same container */
+
+.letter-viewer__sheet {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  width: 78%;
+  height: 108px;
+  background: #fffef8;
+  border: 1px solid rgba(126, 184, 232, 0.4);
+  border-radius: 2px;
+  box-shadow: 0 4px 16px rgba(74, 144, 217, 0.14);
+  overflow: hidden;
+  z-index: 1;
+  transform: translateX(-50%) translateY(0);
+  transform-origin: center bottom;
+  transition:
+    width 1.15s cubic-bezier(0.22, 1, 0.36, 1),
+    height 1.15s cubic-bezier(0.22, 1, 0.36, 1),
+    bottom 1.15s cubic-bezier(0.22, 1, 0.36, 1),
+    left 1.15s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.8s ease,
+    border-radius 0.6s ease;
+}
+
+.letter-viewer__sheet--slide {
+  transform: translateX(-50%) translateY(-48px);
+  z-index: 2;
+  box-shadow: 0 12px 32px rgba(74, 144, 217, 0.2);
+}
+
+.letter-viewer__sheet--expand,
+.letter-viewer__sheet--full {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  transform: none;
+  z-index: 5;
+  border-radius: 3px;
+  box-shadow:
+    0 4px 24px rgba(74, 144, 217, 0.15),
+    0 20px 56px rgba(42, 53, 72, 0.16);
+}
+
+.letter-viewer__sheet-inner {
+  height: 100%;
+  overflow-y: auto;
+  opacity: 0;
+  padding: 0.75rem 1rem;
+  transition: opacity 0.55s ease 0.45s;
+}
+
+.letter-viewer__sheet--expand .letter-viewer__sheet-inner,
+.letter-viewer__sheet--full .letter-viewer__sheet-inner {
+  opacity: 1;
+  padding: clamp(1.75rem, 4vw, 3.5rem) clamp(1.5rem, 5vw, 3.5rem);
+}
+
+.letter-viewer__header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(126, 184, 232, 0.25);
+}
+
+.letter-viewer__date {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-family: var(--sans);
+}
+
+.letter-viewer__title {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.letter-viewer__body p {
+  margin: 0 0 1rem;
+  font-family: var(--display);
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  line-height: 1.75;
+  color: #3d4a5c;
+}
+
+.letter-viewer__body p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .letter-viewer__cluster--expand,
+  .letter-viewer__cluster--full {
+    width: 96vw;
+    height: min(90vh, calc(96vw * 297 / 210));
+  }
+
+  .letter-viewer__sheet--expand .letter-viewer__sheet-inner,
+  .letter-viewer__sheet--full .letter-viewer__sheet-inner {
+    padding: 1.75rem 1.35rem;
+  }
+}
+
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .letter-viewer__cluster,
+  .letter-viewer__sheet,
+  .letter-viewer__flap,
+  .letter-viewer__envelope,
+  .letter-viewer__sheet-inner,
+  .letter-viewer__envelope-front {
+    transition-duration: 0.01ms !important;
+  }
+}

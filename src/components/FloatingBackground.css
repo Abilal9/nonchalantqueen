@@ -1,0 +1,141 @@
+.floating-bg {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.floating-bg__glow {
+  position: absolute;
+  width: 55vw;
+  height: 55vw;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  animation: pulse-glow 8s ease-in-out infinite;
+}
+
+.floating-bg__glow--left {
+  top: -10%;
+  left: -15%;
+  background: radial-gradient(circle, #b8d4f8 0%, transparent 70%);
+}
+
+.floating-bg__glow--right {
+  bottom: -15%;
+  right: -10%;
+  background: radial-gradient(circle, #c5d8f5 0%, transparent 70%);
+  animation-delay: -4s;
+}
+
+.floating-bg__glow--center {
+  top: 20%;
+  left: 30%;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, #dde8ff 0%, transparent 70%);
+  opacity: 0.35;
+  animation-delay: -2s;
+}
+
+/* Pinned twinkling stars */
+
+.floating-bg__stars {
+  position: absolute;
+  inset: 0;
+}
+
+.floating-bg__star {
+  position: absolute;
+  left: var(--left);
+  top: var(--top);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: #a8c8f0;
+  box-shadow: 0 0 calc(var(--size) * 2) #b8d4f8;
+  opacity: var(--opacity);
+  animation: star-twinkle var(--duration) ease-in-out infinite var(--delay);
+}
+
+.float-item {
+  position: absolute;
+  left: var(--left);
+  top: var(--top);
+  width: var(--size);
+  height: var(--size);
+  opacity: var(--opacity);
+  animation:
+    drift var(--duration) linear infinite var(--delay),
+    sway calc(var(--duration) * 0.4) ease-in-out infinite var(--delay),
+    spin calc(var(--duration) * 0.6) ease-in-out infinite var(--delay);
+}
+
+.float-item svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(74, 144, 217, 0.25));
+}
+
+.float-item--star svg {
+  filter: drop-shadow(0 0 6px rgba(126, 184, 232, 0.45));
+}
+
+.float-item--sparkle svg {
+  filter: drop-shadow(0 0 4px rgba(74, 144, 217, 0.35));
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(0, 110vh) rotate(0deg);
+  }
+  100% {
+    transform: translate(var(--drift), -20vh) rotate(var(--spin));
+  }
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    margin-left: 0;
+  }
+  50% {
+    margin-left: 24px;
+  }
+}
+
+@keyframes spin {
+  0%,
+  100% {
+    rotate: -8deg;
+  }
+  50% {
+    rotate: 8deg;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.65;
+  }
+}
+
+@keyframes star-twinkle {
+  0%,
+  100% {
+    opacity: calc(var(--opacity) * 0.4);
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: var(--opacity);
+    transform: scale(1.2);
+  }
+}

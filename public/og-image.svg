@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#eef6ff"/>
+      <stop offset="0.5" stop-color="#e3f0ff"/>
+      <stop offset="1" stop-color="#dde8ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="180" cy="120" r="80" fill="#b8d4f8" opacity="0.35"/>
+  <circle cx="1020" cy="520" r="120" fill="#c5d8f5" opacity="0.4"/>
+  <text x="600" y="250" text-anchor="middle" font-family="Georgia, serif" font-size="72" fill="#2a3548">nonchalant queen</text>
+  <text x="600" y="310" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" fill="#6b7f9a" letter-spacing="0.15em">FOR NISO MANGO</text>
+  <path
+    fill="#4a90d9"
+    transform="translate(540 360) scale(2.2)"
+    d="M16 26.5l-1.6-1.45C8.6 20.2 5 17.1 5 13.2 5 9.9 7.9 7 11.2 7c1.9 0 3.8.9 4.8 2.3 1-1.4 2.9-2.3 4.8-2.3 3.3 0 6.2 2.9 6.2 6.2 0 3.9-3.6 7-9.4 11.85L16 26.5z"
+  />
+  <text x="600" y="500" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" fill="#4a90d9">nonchalantqueen.com</text>
+</svg>
