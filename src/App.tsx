@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import FloatingBackground from './components/FloatingBackground'
 import CuteCursor from './components/CuteCursor'
 import MoonPhaseCycle from './components/MoonPhaseCycle'
+import MoonCats from './components/MoonCats'
 import BottomSections from './components/BottomSections'
 import PasswordGate, { PASSWORD_UNLOCK_MS } from './components/PasswordGate'
 import { applySiteMeta } from './siteMeta'
@@ -39,6 +40,7 @@ function App() {
       >
         {phase === 'unlocked' && <CuteCursor />}
         <MoonPhaseCycle />
+        <MoonCats />
         <FloatingBackground />
 
         <main className="page">

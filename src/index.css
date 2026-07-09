@@ -1,10 +1,23 @@
 :root {
-  --bg-start: #eef6ff;
-  --bg-mid: #e3f0ff;
-  --bg-end: #dde8ff;
-  --text: #2a3548;
-  --muted: #6b7f9a;
-  --accent: #4a90d9;
+  --bg-start: #0a1220;
+  --bg-mid: #121f35;
+  --bg-end: #1a2d4a;
+  --text: #e8edf5;
+  --text-soft: #c5d0e3;
+  --muted: #8fa3c0;
+  --accent: #7eb8e8;
+  --accent-bright: #a8d4f5;
+  --accent-deep: #4a7fad;
+  --retro-gold: #c9b896;
+
+  --surface: rgba(18, 31, 53, 0.72);
+  --surface-hover: rgba(28, 44, 72, 0.88);
+  --surface-border: rgba(126, 184, 232, 0.22);
+  --surface-glow: rgba(126, 184, 232, 0.1);
+
+  --panel-bg: rgba(14, 24, 42, 0.96);
+  --panel-item-bg: rgba(24, 40, 66, 0.72);
+  --panel-item-hover: rgba(32, 52, 82, 0.92);
 
   --sans: 'Segoe UI', system-ui, sans-serif;
   --display: Georgia, 'Times New Roman', serif;
@@ -25,21 +38,58 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   margin: 0;
   min-width: 320px;
-  min-height: 100svh;
-  background: linear-gradient(
-    145deg,
-    var(--bg-start) 0%,
-    var(--bg-mid) 45%,
-    var(--bg-end) 100%
-  );
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -10%, rgba(74, 127, 173, 0.18) 0%, transparent 58%),
+    radial-gradient(ellipse 70% 50% at 100% 100%, rgba(26, 45, 74, 0.55) 0%, transparent 52%),
+    radial-gradient(ellipse 55% 45% at 0% 80%, rgba(15, 26, 46, 0.7) 0%, transparent 50%),
+    linear-gradient(168deg, var(--bg-start) 0%, var(--bg-mid) 46%, var(--bg-end) 100%);
   background-attachment: fixed;
 }
 
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+  background:
+    radial-gradient(ellipse 100% 100% at 50% 50%, transparent 42%, rgba(4, 8, 16, 0.55) 100%);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.04;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.04) 2px,
+    rgba(255, 255, 255, 0.04) 4px
+  );
+}
+
 #root {
-  min-height: 100svh;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  height: 100svh;
+  overflow: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {

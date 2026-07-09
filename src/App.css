@@ -1,3 +1,10 @@
+.app-site {
+  height: 100svh;
+  max-height: 100svh;
+  overflow: hidden;
+  position: relative;
+}
+
 .app-site--hidden {
   opacity: 0;
   pointer-events: none;
@@ -29,19 +36,25 @@
 .page {
   position: relative;
   z-index: 1;
-  min-height: 100svh;
+  height: 100svh;
+  max-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 2rem 3rem;
+  padding: clamp(0.75rem, 2.5vh, 2rem) clamp(1rem, 4vw, 2rem);
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .page__content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
   max-width: 42rem;
+  max-height: 100%;
+  min-height: 0;
 }
 
 .hero-card {
@@ -51,12 +64,13 @@
   padding: 3rem 2.5rem 2.75rem;
   text-align: center;
   border-radius: 2rem;
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
   box-shadow:
-    0 8px 32px rgba(74, 144, 217, 0.14),
-    0 1px 0 rgba(255, 255, 255, 0.9) inset;
-  backdrop-filter: blur(12px);
+    0 10px 40px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(201, 184, 150, 0.06) inset,
+    0 1px 0 rgba(168, 212, 245, 0.08) inset;
+  backdrop-filter: blur(14px);
   animation: card-enter 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -126,7 +140,7 @@
 }
 
 .title-line--accent {
-  background: linear-gradient(135deg, #4a90d9 0%, #7eb8e8 50%, #5b9fd4 100%);
+  background: linear-gradient(135deg, var(--accent-bright) 0%, var(--retro-gold) 48%, var(--accent) 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -230,9 +244,38 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
+  .page {
+    padding: clamp(0.65rem, 2vh, 1.25rem) clamp(0.65rem, 3.5vw, 1rem);
+  }
+
+  .page__content {
+    max-width: 100%;
+  }
+
   .hero-card {
-    padding: 2.25rem 1.5rem 2rem;
-    border-radius: 1.5rem;
+    max-width: 100%;
+    padding: 1.85rem 1.4rem 1.65rem;
+    border-radius: 1.65rem;
+  }
+
+  .title {
+    font-size: clamp(2.05rem, 6.5vw, 2.5rem);
+  }
+
+  .eyebrow {
+    margin-bottom: 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  .subtitle {
+    margin-top: 1rem;
+    font-size: 1.02rem;
+    max-width: 100%;
+  }
+
+  .heart-row {
+    margin-top: 1.35rem;
+    font-size: 1.15rem;
   }
 }

@@ -27,7 +27,7 @@ type StaticStar = {
   opacity: number
 }
 
-const COLORS = ['#7eb8e8', '#5b9fd4', '#4a90d9', '#a8c8f0', '#6eb5e8', '#89b4f0', '#b8d4f8', '#c5dff5']
+const COLORS = ['#7eb8e8', '#a8d4f5', '#c9b896', '#6eb5e8', '#89b4f0', '#5b8fc4', '#d4c4a8', '#4a7fad']
 
 function seededRandom(seed: number) {
   const x = Math.sin(seed * 9999) * 10000

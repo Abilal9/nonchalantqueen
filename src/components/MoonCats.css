@@ -1,0 +1,52 @@
+.moon-cats {
+  position: fixed;
+  right: env(safe-area-inset-right, 0px);
+  bottom: env(safe-area-inset-bottom, 0px);
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.moon-cats__svg {
+  display: block;
+  width: clamp(9.5rem, 34vmin, 17.5rem);
+  height: auto;
+  overflow: visible;
+  vertical-align: bottom;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.32));
+}
+
+.moon-cats__orange {
+  transform-origin: 100px 290px;
+  animation: moon-cats-breathe 5s ease-in-out infinite 0.35s;
+}
+
+.moon-cats__black {
+  transform-origin: 100px 290px;
+  animation: moon-cats-breathe 5s ease-in-out infinite;
+}
+
+@keyframes moon-cats-breathe {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-height: 740px) {
+  .moon-cats__svg {
+    width: clamp(8rem, 30vmin, 13rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moon-cats__orange,
+  .moon-cats__black {
+    animation: none;
+  }
+}

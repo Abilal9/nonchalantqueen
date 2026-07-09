@@ -35,13 +35,13 @@ const sections: Section[] = [
 function EnvelopeStackIcon() {
   return (
     <svg className="section-card__icon" viewBox="0 0 80 64" aria-hidden="true">
-      <rect x="8" y="28" width="52" height="32" rx="3" fill="#c5dff5" stroke="#7eb8e8" strokeWidth="1.5" />
+      <rect x="8" y="28" width="52" height="32" rx="3" fill="#1e3558" stroke="#7eb8e8" strokeWidth="1.5" />
       <path d="M8 28 L34 46 L60 28" fill="none" stroke="#7eb8e8" strokeWidth="1.5" />
-      <rect x="18" y="16" width="52" height="32" rx="3" fill="#d9ebfa" stroke="#5b9fd4" strokeWidth="1.5" />
-      <path d="M18 16 L44 34 L70 16" fill="none" stroke="#5b9fd4" strokeWidth="1.5" />
-      <rect x="28" y="4" width="52" height="32" rx="3" fill="#eef6ff" stroke="#4a90d9" strokeWidth="1.5" />
-      <path d="M28 4 L54 22 L80 4" fill="#b8d4f8" stroke="#4a90d9" strokeWidth="1.5" />
-      <circle cx="54" cy="18" r="4" fill="#4a90d9" opacity="0.35" />
+      <rect x="18" y="16" width="52" height="32" rx="3" fill="#264770" stroke="#a8d4f5" strokeWidth="1.5" />
+      <path d="M18 16 L44 34 L70 16" fill="none" stroke="#a8d4f5" strokeWidth="1.5" />
+      <rect x="28" y="4" width="52" height="32" rx="3" fill="#2f5585" stroke="#c9b896" strokeWidth="1.5" />
+      <path d="M28 4 L54 22 L80 4" fill="#3a6290" stroke="#c9b896" strokeWidth="1.5" />
+      <circle cx="54" cy="18" r="4" fill="#c9b896" opacity="0.45" />
     </svg>
   )
 }
@@ -49,9 +49,9 @@ function EnvelopeStackIcon() {
 function MemoriesIcon() {
   return (
     <svg className="section-card__icon" viewBox="0 0 80 64" aria-hidden="true">
-      <rect x="10" y="12" width="60" height="44" rx="4" fill="#d9ebfa" stroke="#5b9fd4" strokeWidth="1.5" />
-      <circle cx="28" cy="30" r="8" fill="#7eb8e8" opacity="0.5" />
-      <path d="M10 48 L32 32 L48 42 L70 24 L70 56 L10 56 Z" fill="#b8d4f8" opacity="0.6" />
+      <rect x="10" y="12" width="60" height="44" rx="4" fill="#264770" stroke="#a8d4f5" strokeWidth="1.5" />
+      <circle cx="28" cy="30" r="8" fill="#7eb8e8" opacity="0.55" />
+      <path d="M10 48 L32 32 L48 42 L70 24 L70 56 L10 56 Z" fill="#3a6290" opacity="0.75" />
     </svg>
   )
 }
@@ -59,10 +59,10 @@ function MemoriesIcon() {
 function PopQuizIcon() {
   return (
     <svg className="section-card__icon" viewBox="0 0 80 64" aria-hidden="true">
-      <rect x="14" y="10" width="52" height="44" rx="4" fill="#eef6ff" stroke="#5b9fd4" strokeWidth="1.5" />
-      <text x="40" y="30" textAnchor="middle" fontSize="14" fill="#4a90d9" fontFamily="Georgia, serif">?</text>
-      <rect x="22" y="38" width="36" height="6" rx="2" fill="#b8d4f8" />
-      <rect x="22" y="48" width="28" height="6" rx="2" fill="#c5dff5" />
+      <rect x="14" y="10" width="52" height="44" rx="4" fill="#2f5585" stroke="#7eb8e8" strokeWidth="1.5" />
+      <text x="40" y="30" textAnchor="middle" fontSize="14" fill="#c9b896" fontFamily="Georgia, serif">?</text>
+      <rect x="22" y="38" width="36" height="6" rx="2" fill="#4a7fad" />
+      <rect x="22" y="48" width="28" height="6" rx="2" fill="#3a6290" />
     </svg>
   )
 }
@@ -156,7 +156,10 @@ export default function BottomSections({ onSectionChange }: BottomSectionsProps)
                       <span className="letter-list__body" />
                     </span>
                     <span className="letter-list__text">
-                      <span className="letter-list__title">{letter.title}</span>
+                      <span className="letter-list__title-row">
+                        <span className="letter-list__title">{letter.title}</span>
+                        {letter.isNew && <span className="new-tag">new</span>}
+                      </span>
                       <span className="letter-list__preview">{letter.preview}</span>
                       <span className="letter-list__date">{letter.date}</span>
                     </span>

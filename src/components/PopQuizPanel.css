@@ -45,7 +45,7 @@
   width: 0.45rem;
   height: 0.45rem;
   border-radius: 50%;
-  background: rgba(126, 184, 232, 0.35);
+  background: rgba(126, 184, 232, 0.25);
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
@@ -55,7 +55,7 @@
 }
 
 .pop-quiz__dot--done {
-  background: #7eb8e8;
+  background: var(--accent-deep);
 }
 
 .pop-quiz__stats {
@@ -69,10 +69,11 @@
   margin: 0 0 0.75rem;
   padding: 0.5rem 0.75rem;
   border-radius: 0.65rem;
-  background: rgba(184, 212, 248, 0.4);
+  background: rgba(74, 127, 173, 0.2);
+  border: 1px solid var(--surface-border);
   font-size: 0.85rem;
   text-align: center;
-  color: var(--text);
+  color: var(--text-soft);
   animation: fade-up 0.4s ease both;
 }
 
@@ -89,9 +90,9 @@
   width: 100%;
   padding: 1.75rem 1.5rem 1.5rem;
   border-radius: 1.1rem;
-  border: 1px solid rgba(126, 184, 232, 0.55);
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 16px 40px rgba(74, 144, 217, 0.2);
+  border: 1px solid var(--surface-border);
+  background: var(--panel-bg);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
   text-align: center;
 }
 
@@ -102,11 +103,11 @@
   top: 50%;
   width: 0.85rem;
   height: 0.85rem;
-  border-left: 1px solid rgba(126, 184, 232, 0.55);
-  border-bottom: 1px solid rgba(126, 184, 232, 0.55);
-  background: rgba(255, 255, 255, 0.96);
+  border-left: 1px solid var(--surface-border);
+  border-bottom: 1px solid var(--surface-border);
+  background: var(--panel-bg);
   transform: translateY(-50%) rotate(45deg);
-  box-shadow: -4px 4px 12px rgba(74, 144, 217, 0.08);
+  box-shadow: -4px 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .pop-quiz__complete-heart {
@@ -114,8 +115,8 @@
   margin-bottom: 0.75rem;
   font-size: 2.5rem;
   line-height: 1;
-  color: #4a90d9;
-  filter: drop-shadow(0 4px 12px rgba(74, 144, 217, 0.35));
+  color: var(--accent-bright);
+  filter: drop-shadow(0 4px 12px rgba(126, 184, 232, 0.35));
   animation: pop-quiz-heart-pulse 1.4s ease-in-out infinite;
 }
 
@@ -129,9 +130,9 @@
 
 .pop-quiz__complete-btn {
   padding: 0.65rem 1.25rem;
-  border: 1px solid rgba(126, 184, 232, 0.55);
+  border: 1px solid var(--surface-border);
   border-radius: 999px;
-  background: rgba(184, 212, 248, 0.45);
+  background: rgba(74, 127, 173, 0.28);
   color: var(--text);
   font-family: inherit;
   font-size: 0.9rem;
@@ -143,9 +144,9 @@
 }
 
 .pop-quiz__complete-btn:hover {
-  background: rgba(184, 212, 248, 0.7);
+  background: rgba(74, 127, 173, 0.45);
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(74, 144, 217, 0.18);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
 @keyframes pop-quiz-heart-pulse {
@@ -220,9 +221,9 @@
   position: relative;
   width: 100%;
   padding: 0.85rem 1.1rem;
-  border: 1px solid rgba(126, 184, 232, 0.45);
+  border: 1px solid var(--surface-border);
   border-radius: 0.85rem;
-  background: rgba(238, 246, 255, 0.75);
+  background: var(--panel-item-bg);
   color: var(--text);
   font-family: inherit;
   font-size: 1rem;
@@ -237,9 +238,9 @@
 }
 
 .pop-quiz__option:hover:not(:disabled):not(.pop-quiz__option--correct) {
-  background: #fff;
+  background: var(--panel-item-hover);
   transform: translateX(4px);
-  box-shadow: 0 4px 14px rgba(74, 144, 217, 0.14);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
 }
 
 .pop-quiz__option:disabled:not(.pop-quiz__option--correct) {
@@ -248,12 +249,12 @@
 }
 
 .pop-quiz__option--correct {
-  background: rgba(134, 224, 170, 0.55) !important;
-  border-color: #4caf7a !important;
-  color: #1a5c3a !important;
+  background: rgba(76, 175, 122, 0.28) !important;
+  border-color: #5ecf96 !important;
+  color: #b8f0d0 !important;
   box-shadow:
-    0 0 0 2px rgba(76, 175, 122, 0.25),
-    0 6px 20px rgba(76, 175, 122, 0.28) !important;
+    0 0 0 2px rgba(76, 175, 122, 0.2),
+    0 6px 20px rgba(76, 175, 122, 0.18) !important;
   opacity: 1 !important;
   transform: scale(1.02);
   cursor: default;
@@ -327,21 +328,21 @@
 }
 
 .pop-quiz__option--morphing {
-  background: rgba(184, 212, 248, 0.5);
+  background: rgba(74, 127, 173, 0.35);
   border-color: var(--accent);
-  color: var(--accent);
+  color: var(--accent-bright);
 }
 
 .pop-quiz__success {
   margin: 0;
   padding: 0.85rem 1rem;
   border-radius: 0.85rem;
-  background: rgba(184, 212, 248, 0.35);
-  border: 1px solid rgba(126, 184, 232, 0.4);
+  background: rgba(74, 127, 173, 0.22);
+  border: 1px solid var(--surface-border);
   font-family: var(--display);
   font-size: 1rem;
   line-height: 1.5;
-  color: var(--text);
+  color: var(--text-soft);
   text-align: center;
   animation: fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }

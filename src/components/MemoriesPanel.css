@@ -1,6 +1,69 @@
-.panel--memories {
-  max-width: min(92vw, 40rem);
-  max-height: min(88vh, 640px);
+.panel.panel--memories {
+  position: relative;
+  max-width: min(94vw, 58rem);
+  max-height: min(92vh, 860px);
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+
+.memories-panel__scroll {
+  position: relative;
+  z-index: 2;
+  max-height: min(92vh, 860px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 2rem 1.75rem 1.75rem;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+}
+
+.memories-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  perspective: 900px;
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.85) 12%,
+    rgba(0, 0, 0, 0.85) 88%,
+    transparent 100%
+  );
+}
+
+.memories-bg__polaroid {
+  position: absolute;
+  left: var(--bg-x, 50%);
+  top: var(--bg-y, 50%);
+  width: clamp(4.5rem, 11vw, 6.5rem);
+  padding: 0.28rem 0.28rem 0.65rem;
+  border-radius: 3px;
+  background: #f8f6f2;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+  opacity: var(--bg-opacity, 0.22);
+  transform:
+    translate3d(-50%, -50%, 0)
+    rotate(var(--bg-rotate, 0deg))
+    rotateY(var(--bg-flip, 0deg))
+    scale(var(--bg-scale, 1));
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.memories-bg__polaroid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 2px;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .memories-grid {
@@ -8,20 +71,21 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.65rem;
 }
 
 .memory-card {
+  position: relative;
   display: block;
   width: 100%;
-  padding: 0.45rem 0.45rem 1.25rem;
+  padding: 0.3rem 0.3rem 0.75rem;
   border: none;
   border-radius: 4px;
-  background: #fff;
+  background: #f8f6f2;
   box-shadow:
-    0 2px 8px rgba(74, 144, 217, 0.12),
-    0 8px 20px rgba(42, 53, 72, 0.08);
+    0 2px 8px rgba(0, 0, 0, 0.22),
+    0 8px 20px rgba(0, 0, 0, 0.18);
   cursor: pointer;
   transform: rotate(var(--tilt, 0deg));
   transition:
@@ -32,7 +96,7 @@
 
 .memory-card:hover {
   transform: rotate(0deg) scale(1.04);
-  box-shadow: 0 12px 28px rgba(74, 144, 217, 0.2);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
   z-index: 1;
 }
 
@@ -42,7 +106,28 @@
   aspect-ratio: 4 / 5;
   object-fit: cover;
   border-radius: 2px;
-  background: #eef6ff;
+  background: #1a2844;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.memory-card .new-tag {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  z-index: 1;
+  padding: 0.1rem 0.35rem;
+  border-radius: 999px;
+  background: rgba(14, 24, 42, 0.82);
+  border: 1px solid rgba(201, 184, 150, 0.45);
+  color: var(--retro-gold);
+  font-family: var(--sans);
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.2;
 }
 
 .memory-lightbox {
@@ -53,8 +138,8 @@
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  background: rgba(42, 53, 72, 0.55);
-  backdrop-filter: blur(8px);
+  background: rgba(6, 12, 22, 0.82);
+  backdrop-filter: blur(10px);
   cursor: pointer;
   animation: overlay-in 0.3s ease both;
 }
@@ -87,7 +172,7 @@
   text-align: center;
   font-family: var(--display);
   font-size: 1.1rem;
-  color: #b8cce0;
+  color: var(--accent-deep);
   letter-spacing: 0.2em;
 }
 
@@ -113,13 +198,47 @@
   }
 }
 
+@media (max-width: 720px) {
+  .panel.panel--memories {
+    max-width: min(94vw, 42rem);
+  }
+
+  .memories-panel__scroll {
+    padding: 1.75rem 1.25rem 1.5rem;
+  }
+
+  .memories-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+  }
+
+  .memories-bg__polaroid {
+    width: clamp(3.75rem, 18vw, 5.25rem);
+  }
+}
+
 @media (max-width: 480px) {
   .memories-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
+    gap: 0.55rem;
   }
 
   .memory-card {
-    padding: 0.35rem 0.35rem 1rem;
+    padding: 0.25rem 0.25rem 0.65rem;
+  }
+
+  .memories-bg__polaroid {
+    width: clamp(3.25rem, 22vw, 4.5rem);
+    padding: 0.22rem 0.22rem 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .memories-bg__polaroid {
+    transition-duration: 0.01ms;
+    transform:
+      translate3d(-50%, -50%, 0)
+      rotate(var(--bg-rotate, 0deg))
+      scale(var(--bg-scale, 1));
   }
 }

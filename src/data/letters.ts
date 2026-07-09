@@ -4,6 +4,7 @@ export type Letter = {
   preview: string
   content: string
   date: string
+  isNew?: boolean
 }
 
 export const letters: Letter[] = [
@@ -86,5 +87,25 @@ As for me, I hope I have a Nisreen-filled day with Nisreen. My favorite adjectiv
 I Nisreen so much about you.
 
 Good morning, Niso Mango 🥭🥰`,
+  },
+  {
+    id: '5',
+    title: 'My Finish Line',
+    preview: 'Huffing and puffing for air, with my legs and knees giving out…',
+    date: '9 July 2026',
+    isNew: true,
+    content: `Huffing and puffing for air, with my legs and knees giving out and my heart and mind completely worn down, I still found myself running forward. I ran toward a finish line that never seemed to get any closer, only farther away. My body was tired, my soul was tired, and I did not know how much longer I could keep going. I have been in this race for what feels like my entire life. I have had tomatoes thrown at me, heard boos from every direction, and sometimes I even joined the crowd in doubting myself. I did not know why I kept going, only that giving up was never truly in my nature.
+
+Recently, I have not felt as strong as I usually do. I started slowing down. I started feeling like maybe the pressure had finally caught up to me. I let the momentum carry me forward and downward, feeling like I was about to fall apart completely. But as the ground got closer, the noise around me started to fade. The boos became quieter. My soul began to breathe again. And before I knew it, I found myself in your arms.
+
+It was no longer a race. Somehow, right when I felt like I was giving up, I found my destination. You came into my life at a time when I did not even realize how badly I needed peace. You did not have to save me by fixing everything; you saved me simply by being you. By being kind, warm, and unbelievably gentle with parts of me that I thought were too tired to be loved. You make the world feel softer. You make the noise feel quieter. You make me feel like I do not always have to run.
+
+And that is why I love you so much. Not because you are an escape from my life, but because being with you feels like finally arriving somewhere I was always meant to be. You are amazing in ways I do not think you fully understand. I don't think I fully understand it either. I feel like I love more than I can comprehend. The way you care, the way you listen, the way you make me feel seen, and the way your presence alone can change the everything around me— all of it means more to me than I can explain. You came at the right time, in the right way, and somehow became the person I want beside me forever.
+
+Nisreen, you are beautiful, and somehow, you make life beautiful too. You are amazing, and being around you makes everything feel a little more amazing as well. You are my happiness in a way I never expected to find. You have shaped my life into something softer, warmer, and more meaningful, and slowly, I have found my world beginning to shape itself around you.
+
+I love you more than words can describe. I no longer feel like I am running toward some distant finish line. Instead, I find myself running back to you in my thoughts, again and again, because you are where my heart feels most at peace. You are the most gorgeous (e7m and genuine e7m) woman I have ever met. Nisreen, you're so Nisreen.
+
+I love you, Nisreen. You are my finish line.`,
   },
 ]
