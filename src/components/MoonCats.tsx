@@ -10,9 +10,13 @@ const SPOTS = [
 
 const FOREHEAD_SPOT = { cx: 104, cy: 46, rx: 5.5, ry: 4, opacity: 0.5 }
 
-export default function MoonCats() {
+type MoonCatsProps = {
+  hidden?: boolean
+}
+
+export default function MoonCats({ hidden = false }: MoonCatsProps) {
   return (
-    <div className="moon-cats" aria-hidden="true">
+    <div className={`moon-cats${hidden ? ' moon-cats--hidden' : ''}`} aria-hidden="true">
       <svg className="moon-cats__svg" viewBox="0 0 400 290" preserveAspectRatio="xMaxYMax meet" fill="none">
         <defs>
           <filter id="cat-mask-invert" colorInterpolationFilters="sRGB">

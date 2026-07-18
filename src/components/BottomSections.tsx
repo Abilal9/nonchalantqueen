@@ -4,14 +4,17 @@ import { letters } from '../data/letters'
 import LetterViewer from './LetterViewer'
 import MemoriesPanel from './MemoriesPanel'
 import PopQuizPanel from './PopQuizPanel'
+import FactsPanel from './FactsPanel'
+import MusicPanel from './MusicPanel'
 import './BottomSections.css'
 
-type SectionId = 'letters' | 'memories' | 'pop-quiz'
+type SectionId = 'letters' | 'memories' | 'pop-quiz' | 'facts' | 'music'
 
 type Section = {
   id: SectionId
   label: string
   description: string
+  isNew?: boolean
 }
 
 const sections: Section[] = [
@@ -29,6 +32,18 @@ const sections: Section[] = [
     id: 'pop-quiz',
     label: 'Pop Quiz',
     description: 'A fun straightforward quiz',
+  },
+  {
+    id: 'facts',
+    label: 'Facts about you',
+    description: 'Data for the next trivia game',
+    isNew: true,
+  },
+  {
+    id: 'music',
+    label: 'Our music',
+    description: 'Songs that feel like us',
+    isNew: true,
   },
 ]
 
@@ -60,9 +75,60 @@ function PopQuizIcon() {
   return (
     <svg className="section-card__icon" viewBox="0 0 80 64" aria-hidden="true">
       <rect x="14" y="10" width="52" height="44" rx="4" fill="#2f5585" stroke="#7eb8e8" strokeWidth="1.5" />
-      <text x="40" y="30" textAnchor="middle" fontSize="14" fill="#c9b896" fontFamily="Georgia, serif">?</text>
+      <text x="40" y="30" textAnchor="middle" fontSize="14" fill="#c9b896" fontFamily="Georgia, serif">
+        ?
+      </text>
       <rect x="22" y="38" width="36" height="6" rx="2" fill="#4a7fad" />
       <rect x="22" y="48" width="28" height="6" rx="2" fill="#3a6290" />
+    </svg>
+  )
+}
+
+function FactsIcon() {
+  return (
+    <svg className="section-card__icon" viewBox="0 0 80 64" aria-hidden="true">
+      <rect x="18" y="8" width="44" height="48" rx="4" fill="#264770" stroke="#a8d4f5" strokeWidth="1.5" />
+      <path d="M28 20 H52" stroke="#c9b896" strokeWidth="2" strokeLinecap="round" />
+      <path d="M28 30 H48" stroke="#7eb8e8" strokeWidth="2" strokeLinecap="round" opacity="0.85" />
+      <path d="M28 40 H50" stroke="#7eb8e8" strokeWidth="2" strokeLinecap="round" opacity="0.65" />
+      <circle cx="54" cy="48" r="7" fill="#2f5585" stroke="#c9b896" strokeWidth="1.5" />
+      <path d="M54 45 V49 M54 51.5 V52" stroke="#c9b896" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+function MusicIcon() {
+  return (
+    <svg className="section-card__icon" viewBox="0 0 80 64" aria-hidden="true">
+      <defs>
+        <radialGradient id="music-vinyl" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#3a6290" />
+          <stop offset="42%" stopColor="#1e3558" />
+          <stop offset="100%" stopColor="#141c2e" />
+        </radialGradient>
+      </defs>
+      <circle cx="34" cy="36" r="22" fill="url(#music-vinyl)" stroke="#7eb8e8" strokeWidth="1.5" />
+      <circle cx="34" cy="36" r="16" fill="none" stroke="#2f5585" strokeWidth="1" opacity="0.9" />
+      <circle cx="34" cy="36" r="11" fill="none" stroke="#4a7fad" strokeWidth="0.8" opacity="0.55" />
+      <circle cx="34" cy="36" r="6.5" fill="#2f5585" stroke="#c9b896" strokeWidth="1.4" />
+      <circle cx="34" cy="36" r="2.2" fill="#c9b896" opacity="0.85" />
+      <path
+        d="M52 14 V40"
+        fill="none"
+        stroke="#a8d4f5"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+      />
+      <path
+        d="M52 14 C58 12.5, 64 13, 66 16 V30"
+        fill="none"
+        stroke="#a8d4f5"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <ellipse cx="61.5" cy="31.5" rx="6.2" ry="4.6" fill="#2f5585" stroke="#c9b896" strokeWidth="1.4" />
+      <ellipse cx="48.5" cy="41.5" rx="6.2" ry="4.6" fill="#264770" stroke="#7eb8e8" strokeWidth="1.4" />
     </svg>
   )
 }
@@ -71,6 +137,8 @@ const icons: Record<SectionId, () => ReactElement> = {
   letters: EnvelopeStackIcon,
   memories: MemoriesIcon,
   'pop-quiz': PopQuizIcon,
+  facts: FactsIcon,
+  music: MusicIcon,
 }
 
 type BottomSectionsProps = {
@@ -88,6 +156,7 @@ export default function BottomSections({ onSectionChange }: BottomSectionsProps)
 
   const closeSection = () => {
     setActiveSection(null)
+    setSelectedLetter(null)
     onSectionChange?.(false)
   }
 
@@ -118,6 +187,7 @@ export default function BottomSections({ onSectionChange }: BottomSectionsProps)
               className="section-card"
               onClick={() => openSection(section.id)}
             >
+              {section.isNew && <span className="new-tag section-card__new">new</span>}
               <Icon />
               <span className="section-card__label">{section.label}</span>
               <span className="section-card__desc">{section.description}</span>
@@ -175,9 +245,11 @@ export default function BottomSections({ onSectionChange }: BottomSectionsProps)
 
       {activeSection === 'pop-quiz' && <PopQuizPanel onClose={closeSection} />}
 
-      {selectedLetter && (
-        <LetterViewer letter={selectedLetter} onClose={closeLetter} />
-      )}
+      {activeSection === 'facts' && <FactsPanel onClose={closeSection} />}
+
+      {activeSection === 'music' && <MusicPanel onClose={closeSection} />}
+
+      {selectedLetter && <LetterViewer letter={selectedLetter} onClose={closeLetter} />}
     </>
   )
 }

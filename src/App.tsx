@@ -12,6 +12,7 @@ type SitePhase = 'locked' | 'unlocking' | 'unlocked'
 
 function App() {
   const [phase, setPhase] = useState<SitePhase>('locked')
+  const [sectionOpen, setSectionOpen] = useState(false)
 
   useEffect(() => {
     applySiteMeta(phase === 'unlocked')
@@ -40,7 +41,7 @@ function App() {
       >
         {phase === 'unlocked' && <CuteCursor />}
         <MoonPhaseCycle />
-        <MoonCats />
+        <MoonCats hidden={sectionOpen} />
         <FloatingBackground />
 
         <main className="page">
@@ -69,7 +70,7 @@ function App() {
               </div>
             </div>
 
-            <BottomSections />
+            <BottomSections onSectionChange={setSectionOpen} />
           </div>
         </main>
       </div>

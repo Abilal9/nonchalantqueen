@@ -36,8 +36,8 @@
 
 .moon-phase-cycle__track {
   position: relative;
-  width: clamp(64px, 11vmin, 88px);
-  height: clamp(64px, 11vmin, 88px);
+  width: clamp(96px, 18vmin, 140px);
+  height: clamp(96px, 18vmin, 140px);
   filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.35));
   -webkit-mask-image: radial-gradient(circle, #000 52%, transparent 76%);
   mask-image: radial-gradient(circle, #000 52%, transparent 76%);
@@ -98,8 +98,8 @@
 
 @media (max-height: 740px) {
   .moon-phase-cycle__track {
-    width: clamp(56px, 10vmin, 72px);
-    height: clamp(56px, 10vmin, 72px);
+    width: clamp(80px, 15vmin, 112px);
+    height: clamp(80px, 15vmin, 112px);
   }
 }
 

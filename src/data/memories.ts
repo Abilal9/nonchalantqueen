@@ -1,5 +1,5 @@
-const COUNT = 48
-export const NEW_MEMORY_FROM = 27
+const COUNT = 88
+export const NEW_MEMORY_FROM = 49
 
 export const memoryImages: string[] = Array.from(
   { length: COUNT },

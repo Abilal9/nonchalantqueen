@@ -93,7 +93,6 @@ Good morning, Niso Mango 🥭🥰`,
     title: 'My Finish Line',
     preview: 'Huffing and puffing for air, with my legs and knees giving out…',
     date: '9 July 2026',
-    isNew: true,
     content: `Huffing and puffing for air, with my legs and knees giving out and my heart and mind completely worn down, I still found myself running forward. I ran toward a finish line that never seemed to get any closer, only farther away. My body was tired, my soul was tired, and I did not know how much longer I could keep going. I have been in this race for what feels like my entire life. I have had tomatoes thrown at me, heard boos from every direction, and sometimes I even joined the crowd in doubting myself. I did not know why I kept going, only that giving up was never truly in my nature.
 
 Recently, I have not felt as strong as I usually do. I started slowing down. I started feeling like maybe the pressure had finally caught up to me. I let the momentum carry me forward and downward, feeling like I was about to fall apart completely. But as the ground got closer, the noise around me started to fade. The boos became quieter. My soul began to breathe again. And before I knew it, I found myself in your arms.

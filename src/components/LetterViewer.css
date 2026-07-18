@@ -187,7 +187,7 @@
   font-family: var(--display);
   font-size: clamp(1.35rem, 3vw, 1.85rem);
   font-weight: 400;
-  color: var(--text);
+  color: #3a4d63;
   line-height: 1.25;
 }
 

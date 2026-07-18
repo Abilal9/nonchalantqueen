@@ -2,20 +2,28 @@
   position: fixed;
   right: env(safe-area-inset-right, 0px);
   bottom: env(safe-area-inset-bottom, 0px);
-  z-index: 1;
+  z-index: 3;
   display: flex;
   align-items: flex-end;
   line-height: 0;
   pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}
+
+.moon-cats--hidden {
+  opacity: 0;
 }
 
 .moon-cats__svg {
   display: block;
-  width: clamp(9.5rem, 34vmin, 17.5rem);
+  width: clamp(12rem, 42vmin, 21rem);
   height: auto;
   overflow: visible;
   vertical-align: bottom;
-  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.32));
+  filter:
+    drop-shadow(0 10px 22px rgba(0, 0, 0, 0.42))
+    drop-shadow(0 0 18px rgba(168, 212, 245, 0.12));
 }
 
 .moon-cats__orange {
@@ -40,7 +48,7 @@
 
 @media (max-height: 740px) {
   .moon-cats__svg {
-    width: clamp(8rem, 30vmin, 13rem);
+    width: clamp(10rem, 38vmin, 16rem);
   }
 }
 

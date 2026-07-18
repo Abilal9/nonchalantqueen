@@ -6,44 +6,38 @@
   z-index: 0;
 }
 
-.floating-bg__glow {
+.floating-bg__sky-glow {
   position: absolute;
-  width: 55vw;
-  height: 55vw;
+  top: -18%;
+  left: 10%;
+  width: 80vw;
+  height: 45vh;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.55;
-  animation: pulse-glow 8s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(126, 184, 232, 0.18) 0%, transparent 70%);
+  filter: blur(40px);
+  animation: pulse-glow 10s ease-in-out infinite;
 }
 
-.floating-bg__glow--left {
-  top: -10%;
-  left: -15%;
-  background: radial-gradient(circle, rgba(74, 127, 173, 0.35) 0%, transparent 70%);
+.floating-bg__horizon {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 18%;
+  height: 28%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(28, 52, 40, 0.18) 45%,
+    rgba(34, 62, 44, 0.35) 100%
+  );
 }
 
-.floating-bg__glow--right {
-  bottom: -15%;
-  right: -10%;
-  background: radial-gradient(circle, rgba(201, 184, 150, 0.12) 0%, transparent 70%);
-  animation-delay: -4s;
-}
-
-.floating-bg__glow--center {
-  top: 20%;
-  left: 30%;
-  width: 40vw;
-  height: 40vw;
-  background: radial-gradient(circle, rgba(46, 74, 118, 0.45) 0%, transparent 70%);
-  opacity: 0.35;
-  animation-delay: -2s;
-}
-
-/* Pinned twinkling stars */
+/* Night sky — upper half */
 
 .floating-bg__stars {
   position: absolute;
   inset: 0;
+  height: 62%;
 }
 
 .floating-bg__star {
@@ -52,90 +46,210 @@
   top: var(--top);
   width: var(--size);
   height: var(--size);
-  border-radius: 50%;
-  background: var(--accent-bright);
-  box-shadow: 0 0 calc(var(--size) * 2) rgba(126, 184, 232, 0.55);
   opacity: var(--opacity);
   animation: star-twinkle var(--duration) ease-in-out infinite var(--delay);
 }
 
-.float-item {
+.floating-bg__star--dot {
+  border-radius: 50%;
+  background: #eef6ff;
+  box-shadow: 0 0 calc(var(--size) * 2.4) rgba(168, 212, 245, 0.65);
+}
+
+.floating-bg__star--cross {
+  background: transparent;
+  box-shadow: none;
+}
+
+.floating-bg__star--cross::before,
+.floating-bg__star--cross::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: #eef6ff;
+  border-radius: 999px;
+  box-shadow: 0 0 6px rgba(168, 212, 245, 0.55);
+}
+
+.floating-bg__star--cross::before {
+  width: 100%;
+  height: 1.5px;
+  transform: translate(-50%, -50%);
+}
+
+.floating-bg__star--cross::after {
+  width: 1.5px;
+  height: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.floating-bg__star--diamond {
+  background: #f5f0e4;
+  transform: rotate(45deg);
+  box-shadow: 0 0 calc(var(--size) * 2) rgba(201, 184, 150, 0.45);
+}
+
+/* Meadow — bottom field */
+
+.floating-bg__field {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 34%;
+  min-height: 11rem;
+  overflow: hidden;
+}
+
+.floating-bg__grass {
+  position: absolute;
+  left: -4%;
+  right: -4%;
+  bottom: 0;
+  border-radius: 50% 50% 0 0 / 34% 34% 0 0;
+}
+
+.floating-bg__grass--back {
+  height: 100%;
+  background: linear-gradient(180deg, #1e3a26 0%, #162c1c 100%);
+  opacity: 0.72;
+}
+
+.floating-bg__distant-blooms {
+  position: absolute;
+  left: -4%;
+  right: -4%;
+  bottom: 0;
+  height: 100%;
+  border-radius: 50% 50% 0 0 / 34% 34% 0 0;
+  overflow: hidden;
+  pointer-events: none;
+  /* Only paint the dark crest above the mid grass */
+  clip-path: inset(0 0 55% 0);
+}
+
+.floating-bg__distant-bloom {
   position: absolute;
   left: var(--left);
   top: var(--top);
   width: var(--size);
   height: var(--size);
+  border-radius: 50%;
+  background: var(--color);
   opacity: var(--opacity);
-  animation:
-    drift var(--duration) linear infinite var(--delay),
-    sway calc(var(--duration) * 0.4) ease-in-out infinite var(--delay),
-    spin calc(var(--duration) * 0.6) ease-in-out infinite var(--delay);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 2px var(--color);
 }
 
-.float-item svg {
+.floating-bg__grass--mid {
+  height: 62%;
+  background: linear-gradient(180deg, #35663c 0%, #284f30 100%);
+  opacity: 0.86;
+}
+
+.floating-bg__grass--front {
+  height: 36%;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 7px,
+      rgba(56, 110, 62, 0.35) 7px 9px,
+      transparent 9px 16px
+    ),
+    linear-gradient(180deg, #4f8f56 0%, #356a3d 100%);
+  opacity: 0.96;
+}
+
+.planted-flower {
+  position: absolute;
+  left: var(--left);
+  bottom: var(--bottom);
+  width: var(--size);
+  height: calc(var(--size) * 1.5);
+  opacity: var(--opacity);
+  transform: translateX(-50%) scaleY(var(--scale-y));
+  transform-origin: 50% 100%;
+  animation: flower-sway 3.8s ease-in-out infinite var(--delay);
+}
+
+.planted-flower svg {
   width: 100%;
   height: 100%;
   display: block;
-  filter: drop-shadow(0 2px 6px rgba(126, 184, 232, 0.2));
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.28));
 }
 
-.float-item--star svg {
-  filter: drop-shadow(0 0 6px rgba(168, 212, 245, 0.35));
+.planted-flower--peony {
+  animation-duration: 4.4s;
 }
 
-.float-item--sparkle svg {
-  filter: drop-shadow(0 0 4px rgba(201, 184, 150, 0.25));
-}
-
-@keyframes drift {
-  0% {
-    transform: translate(0, 110vh) rotate(0deg);
-  }
-  100% {
-    transform: translate(var(--drift), -20vh) rotate(var(--spin));
-  }
-}
-
-@keyframes sway {
+@keyframes flower-sway {
   0%,
   100% {
-    margin-left: 0;
+    transform: translateX(-50%) scaleY(var(--scale-y)) rotate(calc(var(--sway) * -0.35));
   }
   50% {
-    margin-left: 24px;
-  }
-}
-
-@keyframes spin {
-  0%,
-  100% {
-    rotate: -8deg;
-  }
-  50% {
-    rotate: 8deg;
+    transform: translateX(-50%) scaleY(var(--scale-y)) rotate(var(--sway));
   }
 }
 
 @keyframes pulse-glow {
   0%,
   100% {
+    opacity: 0.55;
     transform: scale(1);
-    opacity: 0.45;
   }
   50% {
-    transform: scale(1.08);
-    opacity: 0.65;
+    opacity: 0.85;
+    transform: scale(1.06);
   }
 }
 
 @keyframes star-twinkle {
   0%,
   100% {
-    opacity: calc(var(--opacity) * 0.4);
-    transform: scale(0.8);
+    opacity: calc(var(--opacity) * 0.35);
+    transform: scale(0.75);
   }
   50% {
     opacity: var(--opacity);
     transform: scale(1.2);
+  }
+}
+
+.floating-bg__star--diamond {
+  animation-name: star-twinkle-diamond;
+}
+
+@keyframes star-twinkle-diamond {
+  0%,
+  100% {
+    opacity: calc(var(--opacity) * 0.35);
+    transform: rotate(45deg) scale(0.75);
+  }
+  50% {
+    opacity: var(--opacity);
+    transform: rotate(45deg) scale(1.2);
+  }
+}
+
+@media (max-width: 600px) {
+  .floating-bg__field {
+    height: 30%;
+    min-height: 9rem;
+  }
+
+  .planted-flower {
+    width: calc(var(--size) * 0.85);
+    height: calc(var(--size) * 1.28);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-bg__star,
+  .planted-flower,
+  .floating-bg__sky-glow {
+    animation: none;
   }
 }
