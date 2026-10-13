@@ -1,10 +1,84 @@
+.need-me-launch-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1.35rem;
+  animation: fade-up 0.9s 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.need-me-launch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 3.25rem;
+  padding: 0.7rem 1.55rem;
+  border: 1.5px solid rgba(201, 184, 150, 0.78);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(201, 184, 150, 0.28), rgba(201, 184, 150, 0.1)),
+    var(--surface);
+  color: var(--text);
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.38),
+    0 0 22px rgba(201, 184, 150, 0.16),
+    0 1px 0 rgba(255, 244, 220, 0.16) inset;
+  animation: summon-glow 3.6s ease-in-out infinite;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.need-me-launch:hover {
+  animation-play-state: paused;
+  transform: translateY(-2px);
+  background:
+    linear-gradient(180deg, rgba(201, 184, 150, 0.4), rgba(201, 184, 150, 0.16)),
+    var(--surface-hover);
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.42),
+    0 0 28px rgba(201, 184, 150, 0.32);
+}
+
+.need-me-launch__heart {
+  color: var(--retro-gold);
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.need-me-launch__label {
+  font-family: var(--display);
+  font-size: 1.28rem;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+@keyframes summon-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 10px 28px rgba(0, 0, 0, 0.38),
+      0 0 12px rgba(201, 184, 150, 0.08),
+      0 1px 0 rgba(255, 244, 220, 0.16) inset;
+  }
+  50% {
+    box-shadow:
+      0 12px 32px rgba(0, 0, 0, 0.42),
+      0 0 26px rgba(201, 184, 150, 0.28),
+      0 1px 0 rgba(255, 244, 220, 0.2) inset;
+  }
+}
+
 .bottom-sections {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.75rem;
   width: 100%;
   max-width: 52rem;
-  margin-top: 2.5rem;
+  margin-top: 0.85rem;
   animation: fade-up 0.9s 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -281,9 +355,22 @@
 }
 
 @media (max-width: 600px) {
+  .need-me-launch-wrap {
+    margin-top: 0.95rem;
+  }
+
+  .need-me-launch {
+    min-height: 2.9rem;
+    padding: 0.55rem 1.15rem;
+  }
+
+  .need-me-launch__label {
+    font-size: 1.12rem;
+  }
+
   .bottom-sections {
     gap: 0.4rem;
-    margin-top: clamp(1rem, 2.2vh, 1.65rem);
+    margin-top: 0.7rem;
     max-width: 100%;
   }
 

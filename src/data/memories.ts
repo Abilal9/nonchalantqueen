@@ -1,9 +1,16 @@
-const COUNT = 88
-export const NEW_MEMORY_FROM = 49
+const PREVIOUS_COUNT = 88
+const NEW_COUNT = 29
+export const NEW_MEMORY_FROM = 89
+
+function memoryPath(number: number) {
+  const id = String(number).padStart(2, '0')
+  const ext = number >= NEW_MEMORY_FROM ? 'jpg' : 'png'
+  return `/memories/memory-${id}.${ext}`
+}
 
 export const memoryImages: string[] = Array.from(
-  { length: COUNT },
-  (_, i) => `/memories/memory-${String(i + 1).padStart(2, '0')}.png`,
+  { length: PREVIOUS_COUNT + NEW_COUNT },
+  (_, i) => memoryPath(i + 1),
 )
 
 export function shuffleMemories(images: readonly string[]): string[] {
@@ -25,7 +32,7 @@ export function memoryTilt(index: number) {
 }
 
 export function isNewMemory(src: string) {
-  const match = /memory-(\d+)\.png$/.exec(src)
+  const match = /memory-(\d+)\.(?:png|jpe?g)$/i.exec(src)
   if (!match) return false
   return Number(match[1]) >= NEW_MEMORY_FROM
 }

@@ -6,9 +6,11 @@ import MemoriesPanel from './MemoriesPanel'
 import PopQuizPanel from './PopQuizPanel'
 import FactsPanel from './FactsPanel'
 import MusicPanel from './MusicPanel'
+import NeedMePanel from './NeedMePanel'
 import './BottomSections.css'
 
 type SectionId = 'letters' | 'memories' | 'pop-quiz' | 'facts' | 'music'
+type PanelId = SectionId | 'need-me'
 
 type Section = {
   id: SectionId
@@ -37,13 +39,11 @@ const sections: Section[] = [
     id: 'facts',
     label: 'Facts about you',
     description: 'Data for the next trivia game',
-    isNew: true,
   },
   {
     id: 'music',
     label: 'Our music',
     description: 'Songs that feel like us',
-    isNew: true,
   },
 ]
 
@@ -146,10 +146,10 @@ type BottomSectionsProps = {
 }
 
 export default function BottomSections({ onSectionChange }: BottomSectionsProps) {
-  const [activeSection, setActiveSection] = useState<SectionId | null>(null)
+  const [activeSection, setActiveSection] = useState<PanelId | null>(null)
   const [selectedLetter, setSelectedLetter] = useState<Letter | null>(null)
 
-  const openSection = (id: SectionId) => {
+  const openSection = (id: PanelId) => {
     setActiveSection(id)
     onSectionChange?.(true)
   }
@@ -177,6 +177,13 @@ export default function BottomSections({ onSectionChange }: BottomSectionsProps)
 
   return (
     <>
+      <div className="need-me-launch-wrap">
+        <button type="button" className="need-me-launch" onClick={() => openSection('need-me')} aria-label="Summon Bibi">
+          <span className="need-me-launch__label">Summon Bibi</span>
+          <span className="need-me-launch__heart" aria-hidden="true">♡</span>
+        </button>
+      </div>
+
       <nav className="bottom-sections" aria-label="Explore">
         {sections.map((section) => {
           const Icon = icons[section.id]
@@ -248,6 +255,8 @@ export default function BottomSections({ onSectionChange }: BottomSectionsProps)
       {activeSection === 'facts' && <FactsPanel onClose={closeSection} />}
 
       {activeSection === 'music' && <MusicPanel onClose={closeSection} />}
+
+      {activeSection === 'need-me' && <NeedMePanel onClose={closeSection} />}
 
       {selectedLetter && <LetterViewer letter={selectedLetter} onClose={closeLetter} />}
     </>

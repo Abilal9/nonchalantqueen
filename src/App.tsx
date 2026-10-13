@@ -4,6 +4,7 @@ import CuteCursor from './components/CuteCursor'
 import MoonPhaseCycle from './components/MoonPhaseCycle'
 import MoonCats from './components/MoonCats'
 import BottomSections from './components/BottomSections'
+import OfficialDate from './components/OfficialDate'
 import PasswordGate, { PASSWORD_UNLOCK_MS } from './components/PasswordGate'
 import { applySiteMeta } from './siteMeta'
 import './App.css'
@@ -43,6 +44,7 @@ function App() {
         <MoonPhaseCycle />
         <MoonCats hidden={sectionOpen} />
         <FloatingBackground />
+        <OfficialDate />
 
         <main className="page">
           <div className="page__content">
